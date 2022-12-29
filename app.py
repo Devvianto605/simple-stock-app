@@ -36,10 +36,6 @@ db.execute("CREATE TABLE IF NOT EXISTS orders (id INTEGER, user_id NUMERIC NOT N
             shares NUMERIC NOT NULL, price NUMERIC NOT NULL, timestamp TEXT, PRIMARY KEY(id), \
             FOREIGN KEY(user_id) REFERENCES users(id))")
 
-# Make sure API key is set
-if not os.environ.get("API_KEY"):
-    raise RuntimeError("API_KEY not set")
-
 
 @app.after_request
 def after_request(response):
@@ -63,7 +59,6 @@ def index():
             del(stocks_owned[i])
 
     for row in stocks_owned:
-        row['name'] = lookup(row['symbol'])['name']
         row['price'] = lookup(row['symbol'])['price']
         row['total'] = float(row['price']) * float(row['SUM(shares)'])
         print(row['price'])

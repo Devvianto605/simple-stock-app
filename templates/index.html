@@ -40,20 +40,20 @@
   <thead>
     <tr>
       <th scope="col">Symbol</th>
-      <th scope="col">Name</th>
+      <!-- <th scope="col">Name</th> -->
       <th scope="col">Shares Owned</th>
       <th scope="col">Current Price</th>
-      <th scope="col">Total Value</th>
+      <th class="border-0 text-end" scope="col" >Total Value</th>
     </tr>
   </thead>
   <tbody>
     {% for item in stocks_owned %}
     <tr>
       <td>{{ item["symbol"] }}</td>
-      <td>{{ item["name"] }}</td>
+      <!-- <td>{{ item["name"] }}</td> -->
       <td>{{ item["SUM(shares)"] }}</td>
       <td>${{ item["price"] }}</td>
-      <td class="text-end">${{'%0.2f'| format(item["total"]|float)}} </td>
+      <td class="border-0 text-end">${{'%0.2f'| format(item["total"]|float)}} </td>
     </tr>
 
     {% endfor %}
